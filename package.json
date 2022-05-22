@@ -1,0 +1,18 @@
+{
+  "name": "rest_api-node_js-l5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "uuid": "^8.3.2",
+    "uuid4": "^2.0.2"
+  }
+}
