@@ -2,11 +2,11 @@ import { v4 as uuid } from 'uuid'; // autoid lib
 
 let users = [];
 
-export const getUsers = (req, res) => {
+export const getUsers = (req, res, next) => {
     res.send(users);
 }
 
-export const createUser = (req, res) => {
+export const createUser = (req, res, next) => {
     try {
         const user = req.body;
         const userId = uuid();
@@ -14,11 +14,11 @@ export const createUser = (req, res) => {
         users.push(userWithId);
         res.status(201).send(`User ${user.name}  ${user.surname} added to DB`);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).send({ message: err.message });
     }
 }
 
-export const getUser = (req, res) => {
+export const getUser = (req, res, next) => {
     const { id } = req.params;
     const userGet = users.find((user) => user.id === id);
     if (userGet == null) {
@@ -27,7 +27,7 @@ export const getUser = (req, res) => {
     res.send (userGet);
 }
 
-export const deleteUser = (req, res) => {
+export const deleteUser = (req, res, next) => {
     try {
         const { id } = req.params;
         users = users.filter((user) => user.id !== id);
@@ -37,7 +37,7 @@ export const deleteUser = (req, res) => {
     }
 }
 
-export const updateUser = (req, res) => {
+export const updateUser = (req, res, next) => {
    try {
        const { id } = req.params;
        const { name, surname, email } = req.body;
