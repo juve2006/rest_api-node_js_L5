@@ -1,6 +1,13 @@
 import { v4 as uuid } from 'uuid'; // autoid lib
 
-let users = [];
+export let users = [
+    {
+        name: "testname",
+        surname: "testsurname",
+        email: "test@gmail.com",
+        password: "testpass"
+    }
+];
 
 export const getUsers = (req, res, next) => {
     res.send(users);
@@ -40,12 +47,13 @@ export const deleteUser = (req, res, next) => {
 export const updateUser = (req, res, next) => {
    try {
        const { id } = req.params;
-       const { name, surname, email } = req.body;
+       const { name, surname, email, password } = req.body;
        let user = users.find((user) => user.id === id);
 
        if (name) user.name = name;
        if (surname) user.surname = surname;
        if (email) user.email = email;
+       if (password) user.password = password;
        res.send(`user ${name} ${surname} has been updated`);
    } catch (err) {
        res.status(400).send({ message: err.message });
